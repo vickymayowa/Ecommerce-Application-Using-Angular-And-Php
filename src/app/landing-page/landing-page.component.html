@@ -2031,23 +2031,24 @@
 
                     <div class="countdown">
                       <div class="countdown-content">
-                        <p class="display-number">360</p>
-
+                        <p class="display-number">{{ days }}</p>
                         <p class="display-text">Days</p>
                       </div>
 
                       <div class="countdown-content">
-                        <p class="display-number">24</p>
+                        <p class="display-number">{{ hours }}</p>
                         <p class="display-text">Hours</p>
                       </div>
 
                       <div class="countdown-content">
-                        <p class="display-number">59</p>
+                        <p class="display-number">{{ minutes }}</p>
                         <p class="display-text">Min</p>
                       </div>
 
                       <div class="countdown-content">
-                        <p class="display-number">00</p>
+                        <p class="display-number">
+                          {{ seconds | number : "2.0-0" }}
+                        </p>
                         <p class="display-text">Sec</p>
                       </div>
                     </div>
