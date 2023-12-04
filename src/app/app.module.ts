@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrdersComponent } from './orders/orders.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     CartComponent,
     ErrorPageComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrdersComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
