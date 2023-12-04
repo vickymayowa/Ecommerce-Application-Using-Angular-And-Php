@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.css']
+  styleUrls: ['./landing-page.component.css'],
 })
+
 export class LandingPageComponent {
   days: number = 360;
   hours: number = 24;
@@ -15,20 +16,45 @@ export class LandingPageComponent {
   constructor() {}
 
   ngOnInit() {
+    console.log('Countdown component initialized');
+
+    // Retrieve the countdown state from local storage
+    const storedCountdownState = localStorage.getItem('countdownState');
+    if (storedCountdownState) {
+      const parsedCountdownState = JSON.parse(storedCountdownState);
+      this.days = parsedCountdownState.days;
+      this.hours = parsedCountdownState.hours;
+      this.minutes = parsedCountdownState.minutes;
+      this.seconds = parsedCountdownState.seconds;
+    }
+
     this.startCountdown();
   }
 
   ngOnDestroy() {
+    console.log('Countdown component destroyed');
+
+    // Save the countdown state to local storage
+    const countdownState = {
+      days: this.days,
+      hours: this.hours,
+      minutes: this.minutes,
+      seconds: this.seconds
+    };
+    localStorage.setItem('countdownState', JSON.stringify(countdownState));
+
     this.stopCountdown();
   }
 
   private startCountdown() {
+    console.log('Countdown started');
     this.countdownInterval = setInterval(() => {
       this.updateCountdown();
     }, 1000);
   }
 
   private stopCountdown() {
+    console.log('Countdown stopped');
     clearInterval(this.countdownInterval);
   }
 
@@ -50,9 +76,15 @@ export class LandingPageComponent {
 
           if (this.days > 0) {
             this.days--;
-          } else {
-            // Countdown has reached zero, you can handle this case as needed
-            this.stopCountdown(); // Stop the countdown when it reaches zero
+
+            // Save the updated countdown state to local storage
+            const countdownState = {
+              days: this.days,
+              hours: this.hours,
+              minutes: this.minutes,
+              seconds: this.seconds
+            };
+            localStorage.setItem('countdownState', JSON.stringify(countdownState));
           }
         }
       }
