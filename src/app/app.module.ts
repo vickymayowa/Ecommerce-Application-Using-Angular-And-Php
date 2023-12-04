@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     LoginComponent,
     RegisterComponent,
     CartComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
