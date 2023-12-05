@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="container col-span-3 mt-5 bg-secondary p-8">
+    <h1 class="text-center text-info text-2xl font-bold mb-4"><b>SignUp Form</b></h1>
+    <form [formGroup]="forms" class="space-y-4">
+        <input type="text" placeholder="First Name" class="form-input my-2"
+               formControlName="first_name"
+               [class.is-valid]="forms.get('first_name')?.invalid && forms.get('first_name')?.touched"
+               [class.is-invalid]="forms.get('first_name')?.invalid && forms.get('first_name')?.touched">
+        <div *ngIf="forms.get('first_name')?.invalid && forms.get('first_name')?.touched">
+            <span class="block text-center text-danger"
+                  *ngIf="forms.get('first_name')?.errors?.['required']">Firstname is required</span>
+        </div>
+
+        <input type="text" placeholder="Surname" class="form-input my-2"
+               formControlName="last_name"
+               [class.is-valid]="forms.get('last_name')?.invalid && forms.get('last_name')?.touched"
+               [class.is-invalid]="forms.get('last_name')?.invalid && forms.get('last_name')?.touched">
+        <div *ngIf="forms.get('last_name')?.invalid && forms.get('last_name')?.touched">
+            <span class="block text-center text-danger"
+                  *ngIf="forms.get('last_name')?.errors?.['required']">Lastname is required</span>
+        </div>
+
+        <!-- Repeat the same structure for other input fields -->
+
+        <select class="form-select my-2" formControlName="gender">
+            <option value="" disabled>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <!-- Repeat the same structure for other input fields -->
+
+        <button class="btn btn-dark w-full my-2" type="submit" [disabled]="forms.invalid"
+                (click)="submitForm()">Submit
+        </button>
+    </form>
+</div>
