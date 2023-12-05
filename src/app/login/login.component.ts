@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-// import { BackendService } from "../services/backend.service";
+import { BackendService } from "../backend-service.service";
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,26 +9,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(public formbuilder: FormBuilder, public services: BackendService, private router: Router) { }
+  constructor(public formbuilder: FormBuilder, public service: BackendService, private router: Router) { }
  
   
   public forms = this.formbuilder.group({
-    first_name: ['', Validators.required],
-    last_name: ['', Validators.required],
+    full_namename: ['', Validators.required],
+    user_name: ['', Validators.required],
     phone_number : ['', [Validators.required, Validators.maxLength(10)]],
     email: ['', [Validators.required, Validators.email]],
     age: ['', Validators.required],
     gender: ['', Validators.required],
     address: ['', Validators.required],
-    complexion: ['', Validators.required],
-    department: ['', Validators.required],
     password: ['', [Validators.required, Validators.maxLength(8)]],
   })
 
   submitForm() {
     console.log(this.forms.value);
 
-    this.services.sendsignup(this.forms.value).subscribe(
+    this.service.sendsignup(this.forms.value).subscribe(
       (data) => {
         console.log(data);
         // if (data && data.success === true) {
